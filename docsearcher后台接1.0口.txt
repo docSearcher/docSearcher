@@ -1,0 +1,80 @@
+1.响应信息
+200 正常
+
+
+2.首页列表获取接口
+http://115.159.152.87:8080/demo/search
+方式：get请求
+输入参数：int page
+输出形式：
+{
+    "total_page": 1,
+    "count_per_page": 8,
+    "items": [        
+        {
+            "medium_cover": "http://115.159.152.87:8080/demo/upload/20170104/209e4080590c46c5a7826fbacfce0a1d_press.png",
+            "big_cover": "http://115.159.152.87:8080/demo/upload/20170104/209e4080590c46c5a7826fbacfce0a1d.png"
+        },
+        {
+            "medium_cover": "http://115.159.152.87:8080/demo/upload/20170104/7d7faee88ef0458bb295c904f78c145a_press.png",
+            "big_cover": "http://115.159.152.87:8080/demo/upload/20170104/7d7faee88ef0458bb295c904f78c145a.png"
+        }
+    ],
+    "code": 200,
+    "total_count": 2,
+    "msg": "成功获取",
+    "current_page": 1
+}
+登录接口
+http://115.159.152.87:8080/demo/user/phoneLogin
+方式：post请求
+输入参数：String pwd  ，String phone
+
+注册接口
+http://115.159.152.87:8080/demo/user/phoneRegister
+方式：post请求
+输入参数：string user_name ，String pwd  ，String phone
+输出参数
+{
+    "code": 200,
+    "user": {
+        "user_id": 100004,
+        "token": "038befa9b2fa6b266208e447b404145f",
+        "user_name": "jieqiang",
+        "gender": 1,
+        "mobile": "15946789000",
+        "pic_url": "http://115.159.152.87:8080/demo/123.png",
+        "create_time": "20170104222328",
+        "last_access_at": "20170104222328",
+        "collection_count": 5,
+        "note_count": 12
+    },
+    "msg": "注册成功"
+}
+
+注销接口
+http://115.159.152.87:8080/demo/user/loginout
+方式：get请求
+
+
+获取用户详情接口
+http://115.159.152.87:8080/demo/user/{token}
+方式：get请求
+输入参数：String token
+如上
+
+检索页面接口
+http://115.159.152.87:8080/demo/search
+方式：get请求
+输入参数：int page（页），String keyword（搜索词）
+
+
+
+
+
+
+ALTER TABLE  singlepagepptitem /*add column updateby varchar(50),*/ADD COLUMN updatetime DATETIME ;
+ALTER TABLE  singlepagepptitem /*add column updateby varchar(50),*/ADD COLUMN filepath VARCHAR(200) ;
+COMMIT;
+
+c:\windows\system32\drivers\etc
