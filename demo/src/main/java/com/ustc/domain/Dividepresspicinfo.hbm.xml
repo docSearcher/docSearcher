@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-11-27 13:35:33 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="com.ustc.domain.Dividepresspicinfo" table="dividepresspicinfo"  optimistic-lock="version">
+        <id name="pressPicId" type="int">
+            <column name="pressPic_id" length="50" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="uploadfileinfo" class="com.ustc.domain.Uploadfileinfo" fetch="select">
+            <column name="file_id" length="50" />
+        </many-to-one>
+        <property name="filename" type="string">
+            <column name="filename" length="100" />
+        </property>
+        <property name="fileUrl" type="string">
+            <column name="fileUrl" length="200" />
+        </property>
+        <property name="createBy" type="string">
+            <column name="createBy" length="50" />
+        </property>
+        <property name="createTime" type="timestamp">
+            <column name="createTime" length="19" />
+        </property>
+        <!--lazy延迟加载和select与join区别  -->
+        <set name="singlepagepptitems" table="singlepagepptitem" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="pressPic_id" length="50" />
+            </key>
+            <!--一对一的操作  -->
+            <one-to-many class="com.ustc.domain.SinglePagePptItem" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-11-27 13:35:33 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="com.ustc.domain.User" table="user"  optimistic-lock="version">
+        <id name="userId" type="int">
+            <column name="user_id" length="50" />
+            <generator class="increment" />
+        </id>
+        <property name="token" type="string">
+            <column name="token" length="50" />
+        </property>
+        <property name="userName" type="string">
+            <column name="userName" length="50" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="50" />
+        </property>
+        <property name="genter" type="int">
+            <column name="genter" length="10" />
+        </property>
+        <property name="mobile" type="string">
+            <column name="mobile" length="20" />
+        </property>
+        <property name="picUrl" type="string">
+            <column name="picUrl" length="100" />
+        </property>
+        <property name="activeId" type="string">
+            <column name="activeId" length="64" />
+        </property>
+        <property name="password" type="string">
+            <column name="PASSWORD" length="50" not-null="true" />
+        </property>
+        <property name="createTime" type="timestamp">
+            <column name="createTime" length="19" />
+        </property>
+        <property name="updateTime" type="timestamp">
+            <column name="updateTime" length="19" />
+        </property>
+        <!-- <set name="uploadfileinfos" table="uploadfileinfo" inverse="false" cascade="save-update" lazy="true" fetch="select">
+            <key>
+                <column name="user_id" length="50" />
+            </key>
+            <one-to-many class="com.ustc.domain.Uploadfileinfo" />
+        </set>
+        <set name="singlePagePptItem" table="user_pptitem"  cascade="save-update,delete" lazy="true" fetch="select">
+            <key>
+                <column name="user_id" length="50" />
+            </key>
+            <one-to-many class="UserPptitem" />
+            <many-to-many class="com.ustc.domain.SinglePagePptItem" column="item_Id"></many-to-many>
+        </set> -->
+    </class>
+</hibernate-mapping>

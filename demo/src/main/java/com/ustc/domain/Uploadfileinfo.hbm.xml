@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-11-27 13:35:33 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="com.ustc.domain.Uploadfileinfo" table="uploadfileinfo"  optimistic-lock="version">
+        <id name="fileId" type="int">
+            <column name="file_id" length="50" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="user" class="com.ustc.domain.User" fetch="select">
+            <column name="user_id" length="50" />
+        </many-to-one>
+        <property name="fileName" type="string">
+            <column name="fileName" length="100" />
+        </property>
+        <property name="fileSize" type="string">
+            <column name="fileSize" length="100" />
+        </property>
+        <property name="fileFormats" type="string">
+            <column name="fileFormats" length="20" />
+        </property>
+        <property name="fileUrl" type="string">
+            <column name="fileUrl" length="200" />
+        </property>
+        <property name="fileUploadtime" type="timestamp">
+            <column name="fileUploadtime" length="19" />
+        </property>
+        <set name="dividefileinfos" table="dividefileinfo" cascade="save-update" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="file_id" length="50" />
+            </key>
+            <one-to-many class="com.ustc.domain.Dividefileinfo" />
+        </set>
+        <set name="picinfos" table="picinfo" inverse="false" cascade="save-update" lazy="true" fetch="select">
+            <key>
+                <column name="file_id" length="50" />
+            </key>
+            <one-to-many class="com.ustc.domain.Picinfo" />
+        </set>
+        <set name="dividepresspicinfos" table="dividepresspicinfo" cascade="save-update" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="file_id" length="50" />
+            </key>
+            <one-to-many class="com.ustc.domain.Dividepresspicinfo" />
+        </set>
+    </class>
+</hibernate-mapping>

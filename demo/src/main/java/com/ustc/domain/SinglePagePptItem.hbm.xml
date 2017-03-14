@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-11-27 13:35:33 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="com.ustc.domain.SinglePagePptItem" table="singlepagepptitem"  optimistic-lock="version">
+        <id name="itemId" type="int">
+            <column name="item_id" length="50" />
+            <generator class="increment" />
+        </id>
+        <!-- 多对一设置unique为true，使外键只会出现一次即可 -->
+        <many-to-one name="dividefileinfo" class="com.ustc.domain.Dividefileinfo" fetch="select" unique="true">
+            <column name="divfile_id" length="50" />
+        </many-to-one>
+        <many-to-one name="dividepresspicinfo" class="com.ustc.domain.Dividepresspicinfo" fetch="select" unique="true">
+            <column name="pressPic_id" length="50" />
+        </many-to-one>
+       <!--  <many-to-one name="picinfo" class="com.ustc.domain.Picinfo" fetch="select" unique="true">
+            <column name="picInfo_id" length="50" />
+        </many-to-one> -->
+        <property name="pptPageNumber" type="java.lang.Integer">
+            <column name="pptPageNumber" />
+        </property>
+        <property name="pptFileName" type="string">
+            <column name="pptFileName" length="100" />
+        </property>
+        <property name="itemContent" type="string">
+            <column name="itemContent" length="5000" />
+        </property>
+        <property name="createTime" type="timestamp">
+            <column name="createTime" length="19" />
+        </property>
+        <property name="createBy" type="string">
+            <column name="createBy" length="50" />
+        </property>
+        
+        <property name="updateTime" type="timestamp">
+            <column name="updateTime" length="19" />
+        </property>
+        <property name="updateBy" type="string">
+            <column name="updateBy" length="50" />
+        </property>
+        
+        <property name="filePath" type="string">
+            <column name="filePath" length="200" />
+        </property>
+        <set name="user" table="user_pptitem" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="item_id" length="50" />
+            </key>
+            <many-to-many class="com.ustc.domain.User" column="user_id"></many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>
